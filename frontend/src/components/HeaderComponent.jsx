@@ -43,14 +43,14 @@ export default function HeaderComponent() {
         ) : (
           <>
             <Link
-              to="/log-in"
+              to="/login"
               className={`h-full flex items-center text-blue-950 border hover:text-white border-blue-950 px-4 py-2 rounded-lg hover:bg-blue-950 hover:opacity-50`}
             >
               <FaSignInAlt className="inline-block sm:hidden text-2xl" />
               <span className="hidden sm:inline-block">Login</span>
             </Link>
             <Link
-              to="/sign-up"
+              to="/register"
               className={`h-full flex items-center text-[white] bg-blue-950
               px-4 py-2 rounded-lg hover:opacity-50`}
             >

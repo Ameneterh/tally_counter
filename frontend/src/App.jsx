@@ -3,6 +3,8 @@ import { Button } from "flowbite-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import HeaderComponent from "./components/HeaderComponent";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,6 +14,8 @@ function App() {
       <HeaderComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
