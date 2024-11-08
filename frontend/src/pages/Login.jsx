@@ -3,13 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, TextInput, Spinner, Alert } from "flowbite-react";
 import { MdLogin } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+} from "../redux/user/userSlice";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,11 +29,10 @@ export default function Register() {
     e.preventDefault();
 
     if (!formData.username || !formData.password) {
-      return setError("Please, fill out all fields");
+      return dispatch(loginFailure("Please, fill out all fields"));
     }
     try {
-      setLoading(true);
-      setError(null);
+      dispatch(loginStart());
       const res = await fetch("/server/auth/login", {
         method: "POST",
         headers: {
@@ -37,19 +42,16 @@ export default function Register() {
       });
       const data = await res.json();
       if (data.success === false) {
-        setLoading(false);
-        setError(data.message);
+        dispatch(loginFailure(data.message));
         return;
       }
-      setLoading(false);
-      setError(null);
 
       if (res.ok) {
+        dispatch(loginSuccess(data));
         navigate("/");
       }
     } catch (error) {
-      setLoading(false);
-      setError(error.message);
+      dispatch(loginFailure(error.message));
     }
   };
 
