@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Button, TextInput } from "flowbite-react";
+import { MdOutlineAppRegistration } from "react-icons/md";
 
 export default function Register() {
   const [formData, setFormData] = useState({});
@@ -51,33 +53,39 @@ export default function Register() {
       onSubmit={handleSubmit}
       className="min-h-[80vh] flex flex-col items-center w-[90%] sm:max-w-sm mx-auto mt-14 gap-4 text-gray-800"
     >
-      <div className="inline-flex items-center gap-2 mb-2 mt-10">
-        <p className="text-3xl prata-regular ">Register</p>
+      <div className="inline-flex items-center gap-2 mb-2 mt-10 border-b-2 border-black w-full pb-4 ">
+        <p className="text-3xl prata-regular flex items-center gap-3">
+          <MdOutlineAppRegistration className="font-extrabold text-white bg-black p-1 rounded" />
+          Register
+        </p>
         <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
       </div>
 
-      <input
+      <TextInput
         type="text"
-        className="w-full pax-3 border border-gray-300 rounded-md active:shadow-md hover:bg-slate-50"
+        className="w-full rounded-md active:shadow-md hover:bg-slate-50"
         placeholder="Location"
         required
+        id="location"
         onChange={(e) => setName(e.target.value)}
         value={name}
       />
 
-      <input
+      <TextInput
         type="text"
-        className="w-full pax-3 border border-gray-300 rounded-md active:shadow-md hover:bg-slate-50"
+        className="w-full rounded-md active:shadow-md hover:bg-slate-50"
         placeholder="Username"
         required
+        id="username"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
       />
-      <input
+      <TextInput
         type="password"
-        className="w-full pax-3 border border-gray-300 rounded-md active:shadow-md hover:bg-slate-50"
+        className="w-full rounded-md active:shadow-md hover:bg-slate-50"
         placeholder="Password"
         required
+        id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
@@ -94,7 +102,10 @@ export default function Register() {
           Signin Here
         </Link>
       </div>
-      <button className="flex justify-center items-center bg-slate-700 px-8 py-3 text-sm font-medium text-white hover:bg-slate-500 active:bg-blue-600 rounded-md w-full uppercase">
+      <Button
+        type="submit"
+        className="flex justify-center items-center bg-slate-700 px-8 text-sm font-medium text-white hover:bg-slate-500 active:bg-blue-600 rounded-md w-full uppercase"
+      >
         {loading ? (
           <>
             <Spinner
@@ -108,7 +119,7 @@ export default function Register() {
         ) : (
           "create account"
         )}
-      </button>
+      </Button>
     </form>
   );
 }
