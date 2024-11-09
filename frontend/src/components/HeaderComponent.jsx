@@ -4,10 +4,11 @@ import { Link, useLocation } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
 import { LuClipboardSignature } from "react-icons/lu";
 import { staff } from "../assets/staff";
+import { useSelector } from "react-redux";
 
 export default function HeaderComponent() {
-  const [currentUser, setCurrentUser] = useState(false);
   const path = useLocation().pathname;
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
     <Navbar fluid className="max-w-6xl mx-auto">
@@ -27,18 +28,26 @@ export default function HeaderComponent() {
           <Dropdown
             arrowIcon={false}
             inline
-            label={<Avatar alt="User settings" img={staff[0].avatar} rounded />}
+            label={
+              <Avatar
+                className="border-2 border-blue-900 rounded-full"
+                alt="User settings"
+                img={currentUser.userImage}
+                rounded
+              />
+            }
           >
             <Dropdown.Header>
-              <span className="block text-sm">{staff[0].name}</span>
+              <span className="block text-sm font-extrabold">
+                <span className="font-normal mr-2">Location:</span>
+                {currentUser.location}
+              </span>
               <span className="block truncate text-sm font-medium">
-                {staff[0].email}
+                <span className="font-normal mr-2">Username:</span>
+                {currentUser.username}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Profile</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item className="text-red-600">Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
           <>
