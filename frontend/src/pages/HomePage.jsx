@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import InAttendance from "../components/InAttendance";
 import { Button } from "flowbite-react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  const { currentUser } = useSelector((state) => state.user);
   const [count, setCount] = useState(1);
 
   const increment = (currentCount) => {
@@ -29,14 +32,24 @@ export default function HomePage() {
           {count}
         </div>
       </div>
-      <div className="flex items-center gap-5 w-full">
-        <Button onClick={() => increment(count)} className="w-full">
-          Next
-        </Button>
-        <Button onClick={() => reset()} className="w-full">
-          Reset
-        </Button>
-      </div>
+
+      {currentUser ? (
+        <div className="flex items-center gap-5 w-full">
+          <Button onClick={() => increment(count)} className="w-full">
+            Next
+          </Button>
+          <Button onClick={() => reset()} className="w-full">
+            Reset
+          </Button>
+        </div>
+      ) : (
+        <Link
+          to="/login"
+          className={`max-w-7xl mx-auto flex items-center justify-center text-blue-950 border hover:text-white border-blue-950 px-4 py-2 rounded-lg hover:bg-blue-950`}
+        >
+          Login To Invite a Client
+        </Link>
+      )}
     </div>
   );
 }

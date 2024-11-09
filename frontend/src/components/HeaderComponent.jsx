@@ -3,12 +3,31 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
 import { LuClipboardSignature } from "react-icons/lu";
-import { staff } from "../assets/staff";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutSuccess } from "../redux/user/userSlice";
 
 export default function HeaderComponent() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/server/user/logout", {
+        method: "POST",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(logoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <Navbar fluid className="max-w-6xl mx-auto">
@@ -47,7 +66,9 @@ export default function HeaderComponent() {
                 {currentUser.username}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item className="text-red-600">Sign out</Dropdown.Item>
+            <Dropdown.Item className="text-red-600" onClick={handleLogout}>
+              Sign out
+            </Dropdown.Item>
           </Dropdown>
         ) : (
           <>

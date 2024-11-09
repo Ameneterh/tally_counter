@@ -14,9 +14,9 @@ function App() {
     <BrowserRouter>
       <HeaderComponent />
       <Routes>
-        <Route element={<PrivateRoute />}>
-          <Route path="/" element={<HomePage />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        {/* <Route element={<PrivateRoute />}>
+        </Route> */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
