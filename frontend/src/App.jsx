@@ -5,7 +5,8 @@ import HomePage from "./pages/HomePage";
 import HeaderComponent from "./components/HeaderComponent";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import PrivateRoute from "./components/PrivateRoute";
+import ClientDisplay from "./pages/ClientDisplay";
+import CallClient from "./pages/CallClient";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,8 +16,8 @@ function App() {
       <HeaderComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route element={<PrivateRoute />}>
-        </Route> */}
+        <Route path="/client-display" element={<ClientDisplay />} />
+        <Route path="/call-client" element={<CallClient />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

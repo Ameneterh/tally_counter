@@ -22,6 +22,12 @@ export default function HomePage() {
     setCount(1);
   };
 
+  const callNextClient = (count) => {
+    const next = increment(count);
+    const location = currentUser.location;
+    console.log(location, next);
+  };
+
   return (
     <div className="min-h-[80svh] flex flex-col gap-6 justify-center max-w-6xl mx-auto mt-5 px-10">
       <div className="flex flex-1 gap-4 flex-wrap items-center justify-center rounded-2xl">
@@ -35,11 +41,11 @@ export default function HomePage() {
 
       {currentUser ? (
         <div className="flex items-center gap-5 w-full">
-          <Button onClick={() => increment(count)} className="w-full">
-            Next
-          </Button>
           <Button onClick={() => reset()} className="w-full">
             Reset
+          </Button>
+          <Button onClick={() => callNextClient(count)} className="w-full">
+            Next
           </Button>
         </div>
       ) : (

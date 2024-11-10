@@ -92,6 +92,14 @@ export default function HeaderComponent() {
 
         <Navbar.Toggle />
       </div>
+      <Navbar.Collapse>
+        <Navbar.Link active={path === "/"} as={"div"}>
+          <Link to="/">HOME</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === "/client-display"} as={"div"}>
+          <Link to="/client-display">CLIENT LIST</Link>
+        </Navbar.Link>
+      </Navbar.Collapse>
     </Navbar>
   );
 }
