@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ClientDisplay from "./pages/ClientDisplay";
 import CallClient from "./pages/CallClient";
+import ClientNow from "./pages/ClientNow";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/client-display" element={<ClientDisplay />} />
         <Route path="/call-client" element={<CallClient />} />
+        <Route path="/client/:id" element={<ClientNow />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

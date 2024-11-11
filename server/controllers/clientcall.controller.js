@@ -10,3 +10,25 @@ export const clientCall = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getclients = async (req, res, next) => {
+  try {
+    const sortDirection = -1;
+    const clients = await NextClient.find({
+      ...(req.query.userId && { userId: req.query.userId }),
+      ...(req.query.clientId && { _id: req.query.clientId }),
+    }).sort({
+      createdAt: sortDirection,
+    });
+
+    const totalClients = await NextClient.countDocuments();
+    // const lastClient = await NextClient.find()
+    //   .sort({ timestamp: -1 })
+    //   .limit(1)
+    //   .toArray();
+
+    res.status(200).json({ clients, totalClients });
+  } catch (error) {
+    next(error);
+  }
+};

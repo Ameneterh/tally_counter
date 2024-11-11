@@ -28,7 +28,7 @@ app.listen(4000, () => {
 
 app.use("/server/user", userRouter);
 app.use("/server/auth", authRouter);
-app.use("/server/client", clientRouter);
+app.use("/server/clients", clientRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

@@ -37,7 +37,7 @@ export default function CallClient() {
       }
       if (res.ok) {
         setCallError(null);
-        navigate("/");
+        navigate(`/client/${data._id}`);
       }
     } catch (error) {
       setCallError("Something went wrong!");
