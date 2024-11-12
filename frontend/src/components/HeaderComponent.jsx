@@ -39,7 +39,7 @@ export default function HeaderComponent() {
           className="mr-3 h-9 sm:h-12"
           alt="Flowbite React Logo"
         />
-        <span className="self-center whitespace-nowrap text-2xl font-bold text-blue-950">
+        <span className="hidden sm:inline-block self-center whitespace-nowrap text-2xl font-bold text-blue-950">
           DEPARTMENT OF
           <span className="block -mt-2 text-lg">Pharmaceutical Services</span>
         </span>
