@@ -10,12 +10,14 @@ const nextClientSchema = new mongoose.Schema(
     location: {
       type: String,
       required: true,
-      unique: true,
     },
     userId: {
       type: String,
       required: true,
-      unique: true,
+    },
+    isDispensed: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

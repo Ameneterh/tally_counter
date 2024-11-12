@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/client-display" element={<ClientDisplay />} />
         <Route path="/call-client" element={<CallClient />} />
-        <Route path="/client/:id" element={<ClientNow />} />
+        <Route path="/client/:clientId" element={<ClientNow />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

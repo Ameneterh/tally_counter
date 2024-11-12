@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
 import { LuClipboardSignature } from "react-icons/lu";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ export default function HeaderComponent() {
   const path = useLocation().pathname;
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -23,6 +24,7 @@ export default function HeaderComponent() {
         console.log(data.message);
       } else {
         dispatch(logoutSuccess());
+        navigate("/login");
       }
     } catch (error) {
       console.log(error.message);
@@ -79,14 +81,14 @@ export default function HeaderComponent() {
               <FaSignInAlt className="inline-block sm:hidden text-2xl" />
               <span className="hidden sm:inline-block">Login</span>
             </Link>
-            <Link
+            {/* <Link
               to="/register"
               className={`h-full flex items-center text-[white] bg-blue-950
               px-4 py-2 rounded-lg hover:opacity-50`}
             >
               <LuClipboardSignature className="inline-block sm:hidden text-2xl" />
               <span className="hidden sm:inline-block">Sign Up</span>
-            </Link>
+            </Link> */}
           </>
         )}
 

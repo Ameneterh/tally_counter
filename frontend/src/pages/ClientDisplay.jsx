@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from "react";
 import ShowClient from "../components/ShowClient";
-import { clientList } from "../assets/clientList.js";
 
 export default function ClientDisplay() {
   const [clients, setClients] = useState([]);
+  const [totalClients, setTotalClients] = useState(0);
 
-  console.log(clients);
+  // console.log(totalClients);
 
   useEffect(() => {
-    const fetchClients = async () => {
-      try {
-        const res = await fetch(`/server/clients/get-clients`);
-        const data = await res.json();
-        if (res.ok) {
-          setClients(data.clients);
+    const interval = setInterval(() => {
+      const fetchClients = async () => {
+        try {
+          const res = await fetch(
+            `/server/clients/get-clients?isDispensed=false`
+          );
+          const data = await res.json();
+          if (res.ok) {
+            setClients(data.isDispensed);
+            setTotalClients(data.totalClients);
+          }
+        } catch (error) {
+          console.log(error.message);
         }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchClients();
-  }, []);
+      };
+
+      fetchClients();
+    }, 10000); //set your time here. repeat every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [totalClients]);
 
   return (
     <div className="min-h-[80svh] flex flex-col gap-6 max-w-6xl mx-auto mt-5 px-10">

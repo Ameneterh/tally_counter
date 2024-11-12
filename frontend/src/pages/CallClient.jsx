@@ -18,7 +18,7 @@ export default function CallClient() {
     e.preventDefault();
 
     try {
-      const res = await fetch("/server/client/client-call", {
+      const res = await fetch("/server/clients/client-call", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
