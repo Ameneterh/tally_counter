@@ -35,6 +35,7 @@ export default function ClientDisplay() {
       <div className="text-3xl w-full font-bold text-center">
         Clients in Attendance:
       </div>
+
       <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-6">
         {clients.map((client, id) => (
           <ShowClient
