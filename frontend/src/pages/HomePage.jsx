@@ -86,16 +86,21 @@ export default function HomePage() {
       {currentUser ? (
         <div className="flex items-center gap-5 w-full">
           {client ? (
-            <Button
-              onClick={() => callNextClient()}
-              className="w-full max-w-80 mx-auto bg-blue-950 h-16 items-center justify-center text-3xl"
-            >
-              Invite Next Client
-            </Button>
+            <div className="flex flex-col gap-5 w-full justify-center text-center">
+              <p className="font-bold text-blue-950">
+                You have successfully set Next Client to Invite
+              </p>
+              <Button
+                onClick={() => callNextClient()}
+                className="w-full max-w-80 mx-auto bg-blue-950 h-16 items-center justify-center text-3xl"
+              >
+                Click Here to Invite Client
+              </Button>
+            </div>
           ) : (
             <Button
               onClick={() => setNextClient(currentTally)}
-              className="w-full max-w-60 mx-auto h-16 items-center justify-center text-3xl"
+              className="w-full max-w-60 mx-auto outline bg-transparent text-green-950 hover:text-white h-16 items-center justify-center text-3xl"
             >
               Set Next Client
             </Button>

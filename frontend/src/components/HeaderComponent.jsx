@@ -32,7 +32,7 @@ export default function HeaderComponent() {
   };
 
   return (
-    <Navbar fluid className="max-w-6xl mx-auto">
+    <Navbar fluid className="max-w-6xl mx-auto border-b-2">
       <Navbar.Brand href="/">
         <img
           src="/amsh_rx_logo.png"
@@ -99,7 +99,12 @@ export default function HeaderComponent() {
           <Link to="/">HOME</Link>
         </Navbar.Link> */}
         <Navbar.Link active={path === "/client-display"} as={"div"}>
-          <Link to="/client-display">CLIENT LIST</Link>
+          <Link
+            to="/client-display"
+            className="py-3 px-6 bg-blue-950 text-white rounded"
+          >
+            CLIENT LIST
+          </Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
