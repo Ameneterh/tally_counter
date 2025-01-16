@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react";
 import InAttendance from "../components/InAttendance";
 import { Button } from "flowbite-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { setLoader } from "../redux/loaderSlice.js";
 
 export default function HomePage() {
+  const { loading } = useSelector((state) => state.loaders);
   const { currentUser } = useSelector((state) => state.user);
   const [currentTally, setCurrentTally] = useState(0);
   const [formData, setFormData] = useState({});
   const [callError, setCallError] = useState(null);
   const [client, setClient] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const primal = { tally: 0 };
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
+        dispatch(setLoader(true));
         const res = await fetch(`/server/clients/get-clients`);
         const data = await res.json();
 
         if (res.ok) {
+          dispatch(setLoader(false));
           setCurrentTally(
             data.lastClient[0] === undefined ? primal : data.lastClient[0]
           );
         }
       } catch (error) {
+        dispatch(setLoader(false));
         console.log(error.message);
       }
     };
@@ -48,6 +54,7 @@ export default function HomePage() {
 
   const callNextClient = async () => {
     try {
+      dispatch(setLoader(true));
       const res = await fetch("/server/clients/client-call", {
         method: "POST",
         headers: {
@@ -58,6 +65,7 @@ export default function HomePage() {
       const data = await res.json();
 
       if (!res.ok) {
+        dispatch(setLoader(false));
         setCallError(data.message);
         return;
       }
@@ -66,10 +74,12 @@ export default function HomePage() {
         return;
       }
       if (res.ok) {
+        dispatch(setLoader(false));
         setCallError(null);
         navigate(`/client/${data._id}`);
       }
     } catch (error) {
+      dispatch(setLoader(false));
       setCallError("Something went wrong!");
     }
     setClient(false);
