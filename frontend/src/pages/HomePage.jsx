@@ -89,7 +89,7 @@ export default function HomePage() {
     <div className="min-h-[80svh] flex flex-col gap-6 justify-center max-w-6xl mx-auto mt-5 px-10 py-10">
       <div className="flex flex-1 gap-4 flex-wrap items-center justify-center rounded-2xl">
         <div className="w-full max-w-5xl h-60 rounded-2xl flex items-center justify-center text-blue-950 text-center text-6xl font-extrabold">
-          Invite Next Client
+          {client ? "Invite" : "Set"} Next Client
         </div>
       </div>
 
@@ -110,7 +110,8 @@ export default function HomePage() {
           ) : (
             <Button
               onClick={() => setNextClient(currentTally)}
-              className="w-full max-w-60 mx-auto outline bg-transparent text-green-950 hover:text-white h-16 items-center justify-center text-3xl"
+              color="gray"
+              className="w-full max-w-60 mx-auto outline bg-transparent h-16 items-center justify-center text-3xl"
             >
               Set Next Client
             </Button>
